@@ -1,0 +1,35 @@
+<div class="container mtb">
+    <table class="table table-hover table-striped table-condensed table-bordered branchByRegionTable">
+        <thead>
+        <tr>
+            <th data-ng-click="sortBy('_id')">
+איזור
+                <span class="sortorder"
+                      ng-style="{'visibility' : propertyName === '_id' ? 'visible' : 'hidden'}"
+                      ng-class="{reverse: reverse}"></span>
+            </th>
+            <th data-ng-click="sortBy('count')">
+                מס' סניפים
+                <span class="sortorder"
+                      ng-style="{'visibility' : propertyName === 'count' ? 'visible' : 'hidden'}"
+                      ng-class="{reverse: reverse}"></span>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-ng-hide="branchesByRegion.length > 0" class="error">
+            <td colspan="2">
+                <div class="text-center"><strong>לא נמצאו סניפים</strong></div>
+            </td>
+        </tr>
+        <tr data-ng-repeat="branchRegion in branchesByRegion | orderBy:propertyName:reverse">
+            <td>
+                {{ branchRegion._id }}
+            </td>
+            <td>
+                {{ branchRegion.count }}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html data-ng-app="pizzaApp">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>פיצה פלנט</title>
+
+    <!-- UI Libs -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="Content/bootstrap.css">
+    <link rel="stylesheet" href="Content/site.css">
+
+</head>
+<body dir="rtl" data-ng-cloak="">
+
+    <header>
+        <nav>
+            <!-- Fixed navbar -->-->
+            <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <canvas id="canvas" class="navbar-left" height="50" width="120"></canvas>
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="#/home" class="navbar-brand">פיצה פלנט</a>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a ng-href="#/about">אודות</a></li>
+                            <li><a ng-href="#/branch">סניפים</a></li>
+                            <li><a ng-href="#/product">מוצרים</a></li>
+                            <li><a ng-href="#/employee">עובדים</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Page title -->
+        <div id="blue" ng-hide="hideTitle">
+            <div class="container">
+                <div class="row">
+                    <h3 ng-bind="title"></h3>
+                </div><!-- /row -->
+            </div> <!-- /container -->
+        </div><!-- /blue -->
+
+    </header>
+
+    <section>
+        <!-- Main Content -->
+        <div data-ng-view=""></div>
+    </section>
+
+    <footer>
+        <div>
+            <!-- Footer -->
+            <div id="footerwrap">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h4>אודות</h4>
+                            <div class="hline-w"></div>
+                            <p>הפיצרייה הנפלאה שלנו נוצרה אי שם בשנת 2016 ומאז אנחנו ממשיכים לצמוח ולפתוח סניפים חדשים.</p>
+                        </div>
+                        <div class="col-lg-6">
+                            <h4>המשרדים שלנו</h4>
+                            <div class="hline-w"></div>
+                            <p>
+                                אלי ויזל, 2<br />
+                                ראשון לציון<br />
+                                ישראל<br />
+                            </p>
+                        </div>
+                    </div><!-- /row -->
+                </div><!-- /container -->
+            </div><!-- /footerwrap -->
+        </div>
+    </footer>
+
+    <!--Angular libs-->
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/angular-route.js"></script>
+    <script src="Scripts/angular-animate.js"></script>
+
+    <!--App libs-->
+    <script src="Scripts/clock.js"></script>
+    <script src="app/app.js"></script>
+    <script src="Scripts/jquery-3.2.1.js"></script>
+    <script src="Scripts/bootstrap.js"></script>
+    <script src="app/config/Config.js"></script>
+
+    <!--Home libs-->
+    <script src="app/controllers/HomeController.js"></script>
+
+    <!--Branches libs-->
+    <script src="app/controllers/BranchController.js"></script>
+    <script src="app/services/BranchService.js"></script>
+
+    <!--Employees libs-->
+    <script src="app/controllers/EmployeeController.js"></script>
+    <script src="app/services/EmployeeService.js"></script>
+
+    <!--Products libs-->
+    <script src="app/controllers/ProductController.js"></script>
+    <script src="app/services/ProductService.js"></script>
+
+    <!-- Socket.io -->
+    <!--<script src="node_modules/socket.io-client/dist/socket.io.js"></script>-->
+    <script src="/socket.io/socket.io.js"></script>
+
+    <!-- D3.js (Charts) -->
+    <script src="Scripts/d3.v4.js"></script>
+</body>
+</html>

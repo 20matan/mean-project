@@ -1,0 +1,99 @@
+<div class="container mtb">
+    <p>
+        <a ng-href="#/productCreate">יצירת מוצר</a>
+    </p>
+
+    <div>
+          שם מוצר:
+        <input type="text" ng-model="productSearch.Name">
+        תיאור:
+        <input type="text" ng-model="productSearch.Description">
+            האם כשר?
+        <input type="checkbox" ng-model="productSearch.IsKosher" ng-false-value="">
+       האם צמחוני?
+        <input type="checkbox" ng-model="productSearch.IsVegetarian" ng-false-value="">
+       האם טבעוני?
+        <input type="checkbox" ng-model="productSearch.IsVegan" ng-false-value="">
+
+        <button type="button" data-ng-click="resetSearch()">אפס חיפוש</button>
+    </div>
+
+    <br>
+    <table class="table table-hover table-striped table-condensed table-bordered ordersTable">
+        <thead>
+        <tr>
+            <th data-ng-click="sortBy('Name')">שם מוצר
+                <span class="sortorder"
+                      ng-style="{'visibility' : propertyName === 'Name' ? 'visible' : 'hidden'}"
+                      ng-class="{reverse: reverse}"></span>
+            </th>
+            <th data-ng-click="sortBy('Description')">תיאור
+                <span class="sortorder"
+                      ng-style="{'visibility' : propertyName === 'Description' ? 'visible' : 'hidden'}"
+                      ng-class="{reverse: reverse}"></span>
+            </th>
+            <th data-ng-click="sortBy('Cost')">מחיר
+                <span class="sortorder"
+                      ng-style="{'visibility' : propertyName === 'Cost' ? 'visible' : 'hidden'}"
+                      ng-class="{reverse: reverse}"></span>
+            </th>
+            <th data-ng-click="sortBy('IsKosher')">האם כשר?
+                <span class="sortorder"
+                      ng-style="{'visibility' : propertyName === 'IsKosher' ? 'visible' : 'hidden'}"
+                      ng-class="{reverse: reverse}"></span>
+            </th>
+            <th data-ng-click="sortBy('IsVegetarian')">האם צמחוני?
+                <span class="sortorder"
+                      ng-style="{'visibility' : propertyName === 'IsVegetarian' ? 'visible' : 'hidden'}"
+                      ng-class="{reverse: reverse}"></span>
+            </th>
+            <th data-ng-click="sortBy('IsVegan')">האם טבעוני?
+                <span class="sortorder"
+                      ng-style="{'visibility' : propertyName === 'IsVegan' ? 'visible' : 'hidden'}"
+                      ng-class="{reverse: reverse}"></span>
+            </th>
+            <th data-ng-click="sortBy('usdRate')">מחיר בדולרים
+                <span class="sortorder"
+                      ng-style="{'visibility' : propertyName === 'usdRate' ? 'visible' : 'hidden'}"
+                      ng-class="{reverse: reverse}"></span>
+            </th>
+            <th>פעולות</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-ng-hide="products.length > 0" class="error">
+            <td colspan="8">
+                <div class="text-center"><strong>לא נמצאו מוצרים</strong></div>
+            </td>
+        </tr>
+        <tr data-ng-repeat="product in products | filter:productSearch | orderBy:propertyName:reverse">
+            <td>
+                {{ product.Name }}
+            </td>
+            <td>
+                {{ product.Description }}
+            </td>
+            <td>
+                {{ product.Cost }}
+            </td>
+            <td>
+                <input type="checkbox" ng-model="product.IsKosher" disabled="disabled">
+            </td>
+            <td>
+                <input type="checkbox" ng-model="product.IsVegetarian" disabled="disabled">
+            </td>
+            <td>
+                <input type="checkbox" ng-model="product.IsVegan" disabled="disabled">
+            </td>
+            <td>
+                {{ (product.Cost * usdRate).toFixed(1) }}
+            </td>
+            <td>
+                <a ng-href="#/product/{{product._id}}">פרטים</a> |
+                <a ng-href="#/productEdit/{{product._id}}">עריכה</a> |
+                <a ng-href="#/productDelete/{{product._id}}">מחיקה</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

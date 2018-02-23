@@ -1,27 +1,27 @@
 {
-  "name": "pizza_planet",
+  "name": "Shalis Blog",
   "version": "1.0.0",
-  "description": "Pizza Planet",
+  "description": "Shaluis blog for overwatch",
   "scripts": {
     "start": "nodemon server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/barelm/PizzaPlanet.git"
+    "url": "git+https://github.com/20matan/mean-project.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/barelm/PizzaPlanet/issues"
+    "url": "https://github.com/20matan/mean-project/issues"
   },
-  "homepage": "https://github.com/barelm/PizzaPlanet#readme",
+  "homepage": "https://github.com/20matan/mean-project#readme",
   "dependencies": {
-    "body-parser": "^1.17.2",
+    "body-parser": "^1.18.2",
     "cors": "^2.8.4",
-    "express": "^4.15.3",
-    "mongoose": "^4.11.6",
-    "socket.io": "^2.0.3"
+    "express": "^4.16.2",
+    "mongoose": "^5.0.6",
+    "socket.io": "^2.0.4"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"

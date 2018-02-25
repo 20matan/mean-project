@@ -1,18 +1,18 @@
-/**
- * Created by evronor on 11/08/2017.
- */
-
-var employeesController = require('../controllers/Employees.js');
-
-var express = require('express'),
-    router = express.Router();
-
-// Define the routes of the model
-router.get('/', employeesController.getAllEmployees);
-router.get('/ByAges', employeesController.getEmployeesCountByAges);
-router.get('/WageByBranch', employeesController.getEmployeesWageByBranch);
-router.post('/', employeesController.createEmployee);
-router.put('/:id', employeesController.updateEmployee);
-router.delete('/:id', employeesController.deleteEmployee);
-
-module.exports = router;
+// /**
+//  * Created by evronor on 11/08/2017.
+//  */
+//
+// var employeesController = require('../controllers/Employees.js');
+//
+// var express = require('express'),
+//     router = express.Router();
+//
+// // Define the routes of the model
+// router.get('/', employeesController.getAllEmployees);
+// router.get('/ByAges', employeesController.getEmployeesCountByAges);
+// router.get('/WageByBranch', employeesController.getEmployeesWageByBranch);
+// router.post('/', employeesController.createEmployee);
+// router.put('/:id', employeesController.updateEmployee);
+// router.delete('/:id', employeesController.deleteEmployee);
+//
+// module.exports = router;

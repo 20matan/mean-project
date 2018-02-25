@@ -1,10 +1,38 @@
-// /**
-//  * Created by evronor on 11/08/2017.
-//  */
-//
-// var Employee = require("../models/Employee");
+const _ = require('lodash')
+const Fan = require('../models/fanModel')
 // var utils = require("../utils");
-//
+
+const FanController = {}
+
+FanController.findAll = (req, res, next) => {
+  console.log('fan find all')
+  Fan.find({})
+    .then(fans => res.send({ success: true, fans }))
+    .catch(next)
+}
+FanController.create = (req, res, next) => {
+  const fanData = _.pick(req.body, ['firstName', 'lastName', 'gender', 'birthDate', 'experience'])
+  console.log('fanData', fanData, req.body)
+
+  const newFan = Fan(fanData)
+  newFan.save()
+    .then(fan => res.send({ success: true, fan }))
+    .catch(next)
+}
+FanController.update = (req, res, next) => {
+  console.log('will update ', req.params.id, 'with data', req.body)
+  Fan.findByIdAndUpdate(req.params.id, req.body, { runValidators: true, new: true })
+    .then(fan => res.send({ success: true, fan }))
+    .catch(next)
+}
+FanController.delete = (req, res, next) => {
+  Fan.findByIdAndRemove(req.params.id)
+    .then(() => res.send({ succes: true }))
+    .catch(next)
+}
+
+module.exports = FanController
+
 // exports.getAllEmployees = function(req, res, next) {
 //
 //     // Get all employees and the branch for each of them

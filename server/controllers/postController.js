@@ -11,6 +11,15 @@ PostController.withComments = (req, res, next) => {
     .then(post => res.send({ success: true, post }))
     .catch(next)
 }
+
+PostController.findById = (req, res, next) => {
+  const { id } = req.params
+  console.log('post find', id)
+  Post.findById(id)
+    .then(post => res.send({ success: true, post }))
+    .catch(next)
+}
+
 PostController.findAll = (req, res, next) => {
   console.log('post find all')
   Post.find({})
@@ -41,4 +50,15 @@ PostController.delete = (req, res, next) => {
     .catch(next)
 }
 
+PostController.getMore = (req, res, next) => {
+  const { postId, heroId } = req.params
+  Post.find({})
+    .then(posts => res.send({
+      success: true,
+      posts: posts
+        .filter(p => p.toObject().postId !== postId && p.toObject().heroId !== heroId)
+        .map(p => Object.assign({}, p.toObject(), { comments: undefined })),
+    }))
+    .catch(next)
+}
 module.exports = PostController

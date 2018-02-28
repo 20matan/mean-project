@@ -13,6 +13,7 @@ const postSchema = new Schema({
   imageURL: { type: String },
   videoURL: { type: String },
   comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }],
+  heroId: { type: Schema.Types.ObjectId, ref: 'Hero' },
 })
 
 // Create a model from the Post and export it

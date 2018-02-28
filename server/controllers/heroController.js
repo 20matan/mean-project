@@ -1,37 +1,37 @@
 const _ = require('lodash')
-const Fan = require('../models/fanModel')
+const Hero = require('../models/heroModel')
 // var utils = require("../utils");
 
-const FanController = {}
+const HeroController = {}
 
-FanController.findAll = (req, res, next) => {
-  console.log('fan find all')
-  Fan.find({})
-    .then(fans => res.send({ success: true, fans }))
+HeroController.findAll = (req, res, next) => {
+  console.log('Hero find all')
+  Hero.find({})
+    .then(Heros => res.send({ success: true, Heros }))
     .catch(next)
 }
-FanController.create = (req, res, next) => {
-  const fanData = _.pick(req.body, ['firstName', 'lastName', 'gender', 'birthDate', 'experience'])
-  console.log('fanData', fanData, req.body)
+HeroController.create = (req, res, next) => {
+  const HeroData = _.pick(req.body, ['firstName', 'lastName', 'gender', 'birthDate', 'experience'])
+  console.log('HeroData', HeroData, req.body)
 
-  const newFan = Fan(fanData)
-  newFan.save()
-    .then(fan => res.send({ success: true, fan }))
+  const newHero = Hero(HeroData)
+  newHero.save()
+    .then(hero => res.send({ success: true, hero }))
     .catch(next)
 }
-FanController.update = (req, res, next) => {
+HeroController.update = (req, res, next) => {
   console.log('will update ', req.params.id, 'with data', req.body)
-  Fan.findByIdAndUpdate(req.params.id, req.body, { runValidators: true, new: true })
-    .then(fan => res.send({ success: true, fan }))
+  Hero.findByIdAndUpdate(req.params.id, req.body, { runValidators: true, new: true })
+    .then(hero => res.send({ success: true, hero }))
     .catch(next)
 }
-FanController.delete = (req, res, next) => {
-  Fan.findByIdAndRemove(req.params.id)
+HeroController.delete = (req, res, next) => {
+  Hero.findByIdAndRemove(req.params.id)
     .then(() => res.send({ succes: true }))
     .catch(next)
 }
 
-module.exports = FanController
+module.exports = HeroController
 
 // exports.getAllEmployees = function(req, res, next) {
 //

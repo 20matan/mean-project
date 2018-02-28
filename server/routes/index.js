@@ -25,12 +25,12 @@
 // module.exports = router;
 
 const express = require('express')
-const fanRouter = require('./fanRouter')
+const heroRouter = require('./heroRouter')
 const postRouter = require('./postRouter')
 const commentRouter = require('./commentRouter')
 
 const router = express.Router()
-router.use('/fan', fanRouter)
+router.use('/hero', heroRouter)
 router.use('/post', postRouter)
 router.use('/comment', commentRouter)
 

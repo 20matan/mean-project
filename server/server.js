@@ -22,7 +22,7 @@ app.use((req, res, next) => {
 app.use(cors())
 
 // Define all routes
-app.use(routes)
+app.use('/api',routes);
 
 // Serve static files
 // app.use('/Content', express.static(path.join(__dirname, '/../Content')))

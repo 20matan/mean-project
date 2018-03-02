@@ -1,0 +1,1 @@
+[{"name":"Tracer","role":"Attack","hp":200,"attackStyle":"Range"},{"name":"Soldier","role":"Attack","hp":250,"attackStyle":"Range"},{"name":"Zenyata","role":"Support","hp":200,"attackStyle":"Range"},{"name":"Reinhart","role":"Tank","hp":500,"attackStyle":"Meele"}]

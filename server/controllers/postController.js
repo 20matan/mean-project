@@ -34,7 +34,7 @@ PostController.findAll = (req, res, next) => {
     .catch(next)
 }
 PostController.create = (req, res, next) => {
-  const postData = _.pick(req.body, ['title', 'authorName', 'authorSiteURL', 'date', 'content', 'imageURL', 'videoURL'])
+  const postData = _.pick(req.body, ['title', 'authorName', 'authorSiteURL', 'date', 'content', 'imageURL', 'videoURL', 'heroId'])
   console.log('postData', postData, req.body)
 
   const newPost = Post(postData)

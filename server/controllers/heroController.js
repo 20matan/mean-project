@@ -31,6 +31,11 @@ HeroController.delete = (req, res, next) => {
     .catch(next)
 }
 
+HeroController.findByRole = (req, res, next) => {
+  const { role } = req.params
+  Hero.find({ role }).then(heros => res.send({ succes: true, heros })).catch(next)
+}
+
 module.exports = HeroController
 
 // exports.getAllEmployees = function(req, res, next) {

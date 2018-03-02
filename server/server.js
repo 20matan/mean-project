@@ -3,12 +3,14 @@ const express = require('express')
 const cors = require('cors')
 const routes = require('./routes')
 const bodyParser = require('body-parser')
-const postController = require('./controllers/postController.js')
+const {findByIdWithoutRes} = require('./controllers/postController.js')
 require('./dbConnection')
-let io = require('socket.io')
 
 const app = express()
 app.use(bodyParser.json())
+
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
 app.use((req, res, next) => {
   console.log('request ', req.method, req.originalUrl, req.body)
@@ -30,16 +32,35 @@ app.use('/api', routes)
 // app.use('/Scripts', express.static(path.join(__dirname, '/../Scripts')))
 // app.use('/app', express.static(path.join(__dirname, '/../app')))
 
-// Start the server and the socket.io
-io = io.listen(app.listen(3000, function () {
-  console.log('Server running at port %s!', this.address().port)
-}))
+
+
+
+
+io.on('connection', function (socket) {
+	console.log('user connected');
+	socket.on('postCreated', (data) => {    
+		// broadcast the new post
+		findByIdWithoutRes(data.postId)
+		  .then((post) => {
+			socket.broadcast.emit('postCreated', data)
+		  })
+		  .catch((err) => {
+			console.log(err)
+		  });
+	});
+	
+});
+
+// Start the server
+http.listen(3000, function() {
+	console.log('listening on port 3000');
+});
 
 // Listen to socket.io connection from client
-io.sockets.on('connection', (socket) => {
+/*io.sockets.on('connection', (socket) => {
   // waits for post created event
   socket.on('postCreated', (data) => {
-    console.log(`${data.poster} posted post id ${data.postId}`)
+    
 
     // broadcast the new post
     postController.findById(data.postId)
@@ -50,7 +71,7 @@ io.sockets.on('connection', (socket) => {
         console.log(err)
       })
   })
-})
+})*/
 
 // app.listen(3000, () => {
 //   console.log('Run at port 3000')

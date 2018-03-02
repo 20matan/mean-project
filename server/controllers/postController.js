@@ -12,6 +12,10 @@ PostController.withComments = (req, res, next) => {
     .catch(next)
 }
 
+PostController.findByIdWithoutRes = id => {
+	return Post.findById(id);
+};
+
 PostController.findById = (req, res, next) => {
   const { id } = req.params
   console.log('post find', id)

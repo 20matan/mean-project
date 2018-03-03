@@ -42,15 +42,15 @@ PostController.stats = (req, res, next) => {
 }
 
 PostController.findAll = (req, res, next) => {
-  const { role, authorName, heroId } = req.query
+  const { role, authorName, hero } = req.query
   const findQuery = {}
   const populationQuery = {}
 
   if (authorName) {
     findQuery.authorName = authorName
   }
-  if (heroId) {
-    findQuery.heroId = heroId
+  if (hero) {
+    findQuery.hero = hero
   }
   if (role) {
     populationQuery.role = role

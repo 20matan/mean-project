@@ -6,7 +6,8 @@ const HeroController = {}
 
 HeroController.findAll = (req, res, next) => {
   console.log('Hero find all')
-  Hero.find({})
+  const { query = {} } = req
+  Hero.find(query)
     .then(Heros => res.send({ success: true, Heros }))
     .catch(next)
 }

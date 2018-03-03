@@ -48,24 +48,13 @@ PostController.findAll = (req, res, next) => {
       const posts = findRes
         .map(p => Object.assign({}, p.toObject(), { comments: undefined }))
         .filter(p => p.hero)
+
       res.send({
         success: true,
         posts,
       })
     })
     .catch(next)
-  // Post.find(findQuery)
-  //   .populate('hero')
-  //   .then((findRes) => {
-  //     const posts = findRes
-  //       .map(p => Object.assign({}, p.toObject(), { comments: undefined }))
-  //       .filter(p => role && p.hero && p.hero.role === role)
-  //     res.send({
-  //       success: true,
-  //       posts,
-  //     })
-  //   })
-  //   .catch(next)
 }
 PostController.create = (req, res, next) => {
   const postData = _.pick(req.body, ['title', 'authorName', 'authorSiteURL', 'date', 'content', 'imageURL', 'videoURL', 'hero'])

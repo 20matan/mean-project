@@ -24,6 +24,23 @@ PostController.findById = (req, res, next) => {
     .catch(next)
 }
 
+PostController.stats = (req, res, next) => {
+  Post.aggregate([
+    { $group: { _id: '$hero', count: { $sum: 1 } } },
+    {
+      $lookup: {
+        from: 'heros', localField: '_id', foreignField: '_id', as: 'hero',
+      },
+    },
+    { $unwind: { path: '$hero' } }, // from [] to {}
+  ])
+    .then((stats) => {
+      console.log('a')
+      res.send({ success: true, stats })
+    })
+    .catch(next)
+}
+
 PostController.findAll = (req, res, next) => {
   const { role, authorName, heroId } = req.query
   const findQuery = {}

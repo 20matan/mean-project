@@ -13,5 +13,5 @@ const heroSchema = new Schema({
 })
 
 // Create a model from the schema and export it
-const hero = mongoose.model('hero', heroSchema)
+const hero = mongoose.model('Hero', heroSchema)
 module.exports = hero

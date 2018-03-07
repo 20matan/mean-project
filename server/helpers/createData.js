@@ -8,7 +8,7 @@ const functions = {}
 
 functions.populateHeros = () => {
   heros.forEach((hero) => {
-      console.log(hero)
+    console.log(hero)
     const newHero = Hero(hero)
     newHero.save()
       .catch(console.log)
@@ -17,7 +17,7 @@ functions.populateHeros = () => {
 
 functions.populateMaps = () => {
   maps.forEach((map) => {
-      console.log(map)
+    console.log(map)
     const newMap = Map(map)
     newMap.save()
       .catch(console.log)

@@ -1,42 +1,50 @@
-const express = require('express')
-const cors = require('cors')
-const routes = require('./routes')
-const bodyParser = require('body-parser')
-const { findByIdWithoutRes } = require('./controllers/postController.js')
-require('./dbConnection')
+const express = require("express");
+const cors = require("cors");
+const routes = require("./routes");
+const path = require("path");
+const bodyParser = require("body-parser");
+const { findByIdWithoutRes } = require("./controllers/postController.js");
+require("./dbConnection");
 
-const app = express()
-app.use(bodyParser.json())
+const app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
+var http = require("http").Server(app);
+var io = require("socket.io")(http);
 
 app.use((req, res, next) => {
-  console.log('request ', req.method, req.originalUrl, req.body)
+  console.log("request ", req.method, req.originalUrl, req.body);
 
-  next()
-})
+  next();
+});
 
-app.use(cors())
+app.use(cors());
 
 // Define all routes
-app.use('/api', routes)
+app.use("/api", routes);
 
-io.on('connection', function (socket) {
-	console.log('user connected');
-	socket.on('postCreated', (data) => {
-		// broadcast the new post
+app.use(express.static(__dirname + "/public"));
+
+app.get("*", function(req, res) {
+  res.sendFile(path.join(__dirname, "public/index.html"));
+});
+
+io.on("connection", function(socket) {
+  console.log("user connected");
+  socket.on("postCreated", data => {
+    // broadcast the new post
     findByIdWithoutRes(data.postId)
-		  .then((post) => {
-			socket.broadcast.emit('postCreated', data)
-		  })
-		  .catch((err) => {
-			console.log(err)
-		  });
-	});
+      .then(post => {
+        socket.broadcast.emit("postCreated", data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  });
 });
 
 // Start the server
 http.listen(3000, function() {
-	console.log('listening on port 3000');
+  console.log("listening on port 3000");
 });

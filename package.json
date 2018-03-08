@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/20matan/mean-project.git"
+    "url": ""
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/20matan/mean-project/issues"
+    "url": ""
   },
-  "homepage": "https://github.com/20matan/mean-project#readme",
+  "homepage": "",
   "dependencies": {
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
